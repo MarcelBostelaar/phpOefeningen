@@ -1,0 +1,36 @@
+.inline{
+    display: inline;
+}
+
+.code, input[type="text"]{
+    font-family: Consolas, monospace;
+}
+
+.fieldSolution {
+    background-color: lightpink
+}
+
+/*.code {display: inline;}*/
+
+tr:nth-child(even) {
+    background: #CCC
+}
+tr:nth-child(odd) {
+    background: #FFF
+}
+
+.correct{
+    background: lawngreen;
+}
+.incorrect{
+    background: red;
+}
+
+main{
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f3f3f3;
+    padding: 1rem;
+
+}

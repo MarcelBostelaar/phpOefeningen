@@ -1,0 +1,7 @@
+importeren antwoorden?
+
+Fix dat je geen foutmelding krijgt bij 502 ofzo
+Timeout php script van een paar seconden ipv 30 seconden
+Padding links recht rond tekstveld
+Betere code font
+
