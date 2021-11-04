@@ -1,7 +1,9 @@
+export 1 grote ingevulde html file aan de hand van opgeslagen items
+schoon code op
+seperate code en opmaak.
+
 importeren antwoorden?
 
-Fix dat je geen foutmelding krijgt bij 502 ofzo
+
 Timeout php script van een paar seconden ipv 30 seconden
-Padding links recht rond tekstveld
-Betere code font
 
