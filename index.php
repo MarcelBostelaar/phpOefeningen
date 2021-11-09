@@ -1,6 +1,6 @@
 <head>
-    <link rel="stylesheet" href="internal/css.css">
-    <script src="internal/answerSaving.js"></script>
+    <link rel="stylesheet" href="internal/css/css.css">
+    <script src="internal/js/answerSaving.js"></script>
     <title>Oefeningen</title>
 </head>
 <body>

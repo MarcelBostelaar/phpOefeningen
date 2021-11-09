@@ -34,3 +34,10 @@ main{
     padding: 1rem;
 
 }
+
+.examplediv, .solutiondiv{
+    border-color: black;
+    border-width: 4px;
+    border-style: solid;
+    padding: 1em;
+}

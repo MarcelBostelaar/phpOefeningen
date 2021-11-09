@@ -16,9 +16,9 @@
     {
         ?>
     <head>
-        <link rel="stylesheet" href="../internal/css.css">
-        <script src="../internal/answerSaving.js"></script>
-        <script src="../internal/solutioncode.js"></script>
+        <link rel="stylesheet" href="css/css.css">
+        <script src="js/answerSaving.js"></script>
+        <script src="js/solutioncode.js"></script>
         <title>Opdracht</title>
         <style id='exampleCodeCSS'>.fieldSolution {display: none}</style>
     </head>
@@ -28,7 +28,7 @@
         <main>
             <a href="../index.php"><button>Terug naar overzicht</button></a>
         <?php
-        include "../internal/ExcerciseCode.php";
+        include "../internal/Excercise.php";
 
         $oefening = 1;
         if (isset($_GET["lesson"])) {
