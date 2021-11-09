@@ -1,12 +1,13 @@
 <?php
-include "../internal/OpdrachtenSet.php";
+include_once dirname(__DIR__) . "/internal/LessonRegistration.php";
 $defaultInstructie = "Vul de code aan om het verwachte antwoord te krijgen.";
 $functieInstructie = "In php, en bijna elke andere programmeertaal kan je functies maken. Hiermee kan je stukjes code op meerdere plekken aanroepen en hergebruiken.
     Een functie heeft 0 of meer zogenaamde 'parameters', dit zijn waardes die je meegeeft en dus beschikbaar maakt aan de functie.
     Ook kan een functie een waarde teruggeven, de zogenaamde return value. Dit hoeft niet, maar mag wel.";
 
-OpdrachtenSet(
-    new opdracht($functieInstructie,
+LessonRegister::register("functions",
+    [
+    new exercise($functieInstructie,
         '
 function naamVanJeFunctie($parameter1, $parameter2){
     echo "Dit is jouw functie!";
@@ -18,7 +19,7 @@ function naamVanJeFunctie($parameter1, $parameter2){
 naamVanJeFunctie("Hallo", "student!");
 naamVanJeFunctie("Hoe gaat", "het?");
     ', []),
-    new opdracht($functieInstructie,
+    new exercise($functieInstructie,
         '
 [FIELD] print5Keer($parameter){
     echo $parameter;
@@ -32,7 +33,7 @@ print5Keer("7 ");
 print5Keer("hoi ");
 print5Keer("hallo ");
     ', ["function"]),
-    new opdracht($functieInstructie,
+    new exercise($functieInstructie,
         '
 [FIELD]{
     echo $parameter;
@@ -46,7 +47,7 @@ print5Keer("7 ");
 print5Keer("hoi ");
 print5Keer("hallo ");
     ', ['function print5Keer($parameter)']),
-    new opdracht($functieInstructie,
+    new exercise($functieInstructie,
         '
 [FIELD]{
     [FIELD]
@@ -60,7 +61,7 @@ print5Keer("7 ");
 print5Keer("hoi ");
 print5Keer("hallo ");
     ', ['function print5Keer($parameter)', 'echo $parameter;', 'echo $parameter;', 'echo $parameter;', 'echo $parameter;', 'echo $parameter;']),
-    new opdracht($functieInstructie,
+    new exercise($functieInstructie,
         '
 function mijnFunctie[FIELD]{
     [FIELD]
@@ -71,4 +72,4 @@ function mijnFunctie[FIELD]{
 mijnFunctie(true, "hallo");
 mijnFunctie(false, "hoi");
     ', ['($printWelNiet, $tekst)', 'if($printWelNiet){', 'print($tekst);', '}'])
-);
+]);

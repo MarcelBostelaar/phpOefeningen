@@ -1,6 +1,7 @@
 <?php
-include "../util/classes.php";
-include "../util/util.php";
+include_once dirname(__DIR__) . "/util/classes.php";
+include_once dirname(__DIR__) . "/util/util.php";
+include_once dirname(__DIR__) . "/util/SessionID.php";
 
 /**
  * Takes an array of lines and answers, and creates a string of working code.
@@ -14,7 +15,7 @@ function linesToWorkingCode(array $lines, array $solutions){
     $counter = 0;
 
     foreach ($lines as $lineInstance){
-        switch($lineInstance){
+        switch($lineInstance->type){
             case line::LineBreak:
                 $total .= "\n";
                 break;

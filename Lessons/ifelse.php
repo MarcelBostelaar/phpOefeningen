@@ -1,12 +1,13 @@
 <?php
-include "../internal/OpdrachtenSet.php";
+include_once dirname(__DIR__) . "/internal/LessonRegistration.php";
 $defaultInstructie = "Vul de code aan om het verwachte antwoord te krijgen.";
 $complexOperatorInstructie = "Je kan ook 2 boolean waarden met elkaar vergelijken en combineren. Zo is 'true && false' gelijk aan 'false', en is 'false || true' gelijk aan 'true'.
     Door verschillende operantoren te gebruiken kan je meer complexe regels schrijven. 
     Houd hierbij in gedachte dat de volgorde belangrijk is, gebruik dus haakjes ( en ) om een subgroepje eerst compleet uit te werken.";
 
-OpdrachtenSet(
-    new opdracht(
+LessonRegister::register("ifelse",
+    [
+    new exercise(
         "Een speciaal type waarde is de 'boolean' waarde. Deze waarde heeft twee mogelijke waarden, waar en onwaar, of in het engels 'true' en 'false'.
         Deze waarden kunnen worden gebruikt om beslissingen te nemen. Een belangrijk voorbeeld hiervan is een if-else. Hiermee kan je sommige stukken code wel of niet uitvoeren aan de hand van een boolean waarde.
         Hieronder zie je een voorbeeld van een if else. Als de boolean waarde true is, wordt het deel binnen de if uitgevoerd. Als het false is, word de else uitgevoerd.",
@@ -15,7 +16,7 @@ OpdrachtenSet(
 }else{
     echo "Voer dit niet uit";
 }', []),
-    new opdracht(
+    new exercise(
         $defaultInstructie,
 'if ([FIELD]){
     echo "Voer dit uit";
@@ -23,7 +24,7 @@ OpdrachtenSet(
     echo "Voer dit niet uit";
 }', ["true"]
     ),
-    new opdracht(
+    new exercise(
         $defaultInstructie,
         '
 [FIELD] = "appel";
@@ -34,7 +35,7 @@ if (true){
     echo $b;
 }', ['$a', '$b']
     ),
-    new opdracht(
+    new exercise(
         $defaultInstructie,
         '[FIELD]{
     echo "Voer dit uit";
@@ -42,7 +43,7 @@ if (true){
     echo "Voer dit niet uit";
 }', ["if (true)"]),
 
-    new opdracht(
+    new exercise(
         "Een boolean waarde kan je natuurlijk maken. Met verschillende 'operatoren' kan je waardes vergelijken en hieruit een booleanwaarde krijgen.
         Met operatoren zoald > en < (zie de onderste tabel op bladzijde 38 van je boek) kan je waardes vergelijken.",
         '
@@ -52,7 +53,7 @@ if ($leeftijd < 18){
 }else{
     echo "welkom";
 }', []),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
     '
 $leeftijd = [FIELD];
 if ($leeftijd >= 18){
@@ -60,7 +61,7 @@ if ($leeftijd >= 18){
 }else{
     echo "Je bent te jong";
 }', ["17"]),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
     '
 $a = [FIELD];
 $b = [FIELD];
@@ -69,7 +70,7 @@ if ($a > $b){
 }else{
     echo "Appel";
 }', ['7', '6']),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
         '
 $a = 5;
 $b = 5;
@@ -78,7 +79,7 @@ if ($a [FIELD] $b){
 }else{
     echo "Appel";
 }', ["=="]),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
         '
 $a = 5;
 $b = 5;
@@ -87,7 +88,7 @@ if ($a [FIELD] $b){
 }else{
     echo "Appel";
 }', ["!="]),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
     '
 echo "A";
 if([FIELD]){
@@ -95,7 +96,7 @@ if([FIELD]){
 }
 echo "C";
     ', ["true"]),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
         '
 $fruit = "appel";
 if([FIELD] == "peer"){
@@ -109,7 +110,7 @@ else{
         echo "Lekkere appels";
     }
 }', ['$fruit', "=="]),
-    new opdracht($defaultInstructie,
+    new exercise($defaultInstructie,
         '
 $fruit = "citroen";
 if([FIELD] == "peer"){
@@ -121,7 +122,7 @@ elseif($fruit [FIELD] "citroen"){
 else{
     echo "Lekkere appels";
 }', ['$fruit', "=="]),
-    new opdracht($complexOperatorInstructie,
+    new exercise($complexOperatorInstructie,
     '
 $woonplaats = "rotterdam";
 $leeftijd = 17;
@@ -131,7 +132,7 @@ if($woonplaats == "rotterdam" && $leeftijd > 15){
 else{
     echo "Alleen voor echte Rotterdammers boven de 15";
 }',[]),
-    new opdracht($complexOperatorInstructie,
+    new exercise($complexOperatorInstructie,
         '
 $woonplaats = "rotterdam";
 $leeftijd = 5;
@@ -141,7 +142,7 @@ if($woonplaats == "rotterdam" || $leeftijd > 15){
 else{
     echo "Alleen voor echte Rotterdammers of mensen boven de 15";
 }', []),
-    new opdracht($complexOperatorInstructie . "\nPrint de naam uit als die 'Sanne' heet en in Amersfoort woont, of als deze persoon van ponies houd maar niet van kroketten.",
+    new exercise($complexOperatorInstructie . "\nPrint de naam uit als die 'Sanne' heet en in Amersfoort woont, of als deze persoon van ponies houd maar niet van kroketten.",
         '
 $naam = "Frits";
 $woonplaats = "Amersfoort";
@@ -155,7 +156,7 @@ else{
 }
     ',
         ["==", "==", "==", "!="]),
-    new opdracht($complexOperatorInstructie . "\nPrint de naam uit als die 'Sanne' heet en in Amersfoort woont, of als deze persoon van ponies houd maar niet van kroketten.",
+    new exercise($complexOperatorInstructie . "\nPrint de naam uit als die 'Sanne' heet en in Amersfoort woont, of als deze persoon van ponies houd maar niet van kroketten.",
         '
 $naam = "Sanne";
 $woonplaats = "Zoutelande";
@@ -169,5 +170,5 @@ else{
 }
     ',
         ["==", "&&", "==", "||", "==", "&&", "!="])
-);
+]);
 ?>

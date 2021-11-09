@@ -3,7 +3,7 @@
      * Code that makes the fillable code, the expected answer and the user result
      * */
 
-include "../util/classes.php";
+include_once dirname(__DIR__) . "/util/classes.php";
 
 /** Returns a line start for fillable code
  * @param $lineNumber
@@ -33,7 +33,10 @@ function LinesToCodeHTML(array $lines, array $solutions, array $userAnswers){
                 $lineCounter++;
                 break;
             case line::Code:
-                $totaalHTML .= "<p>$i->value</p>";
+                $code = $i->value;
+                $code = htmlspecialchars($code);
+                $code = str_replace(" ", "&nbsp", $code);
+                $totaalHTML .= "<p>$code</p>";
                 break;
             case line::Field:
                 $totaalHTML .= "<input type='text' oninput='fieldInput()' name='field_$fieldCounter' class='fieldAnswer' value='$userAnswers[$fieldCounter]'/>

@@ -1,3 +1,7 @@
+:root {
+    --some-padding: 12px;
+}
+
 .inline{
     display: inline;
 }

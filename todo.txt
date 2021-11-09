@@ -7,6 +7,5 @@ importeren antwoorden?
 
 Timeout php script van een paar seconden ipv 30 seconden
 
-Opdrachten registeren naar dictionary, opdracht halen uit tag en opdracht nummer.
-Excercise.php als enige page houden
-Opdrachtenset wegwerken
+Groeper echt antwoord en user antwoord in een div
+past check js aan om per groepje te checken

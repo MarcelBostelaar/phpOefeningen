@@ -11,9 +11,9 @@
     <button onclick="resetAnswers()">Reset alle opdrachten.</button>
     <button onclick="saveAnswers()">Download jouw antwoorden</button>
     <ol>
-        <li><a href="Lessen/EchoAndVariables.php">Echo en variabelen</a></li>
-        <li><a href="Lessen/ifelse.php">If else</a></li>
-        <li><a href="Lessen/functies.php">Functies</a></li>
+        <li><a href="internal/Excercise.php?lesson=echo&exerciseNumber=1">Echo en variabelen</a></li>
+        <li><a href="internal/Excercise.php?lesson=ifelse&exerciseNumber=1">If else</a></li>
+        <li><a href="internal/Excercise.php?lesson=function&exerciseNumber=1">Functies</a></li>
     </ol>
 </main>
 </body>

@@ -17,7 +17,3 @@ function toggleExample(button){
         document.getElementById('exampleCodeCSS').innerText = '.fieldSolution {display: none}';
     }
 }
-
-function checkScrollDown(){
-    window.scrollTo(0,document.body.scrollHeight);
-}

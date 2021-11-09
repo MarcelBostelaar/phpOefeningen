@@ -2,13 +2,9 @@
 
 /**
  * @param $fieldCount int amount of fields to retrieve
- * @return array<string>|null Array of answers if any were send, or null is no answers were send
+ * @return array<string> Array of user answers;
  */
 function GetUserSetFields(int $fieldCount){
-    if(!isset($_POST["submit"])) {
-        return null;
-    }
-
     $values = [];
     for ($i = 0; $i < $fieldCount; $i++){
         if(isset($_POST["field_$i"])){
@@ -19,5 +15,15 @@ function GetUserSetFields(int $fieldCount){
         }
     }
     return $values;
+}
+
+/**
+ * @return bool Whether or not user answers were send at all.
+ */
+function WereUserAnswersSend(){
+    if(!isset($_POST["submit"])) {
+        return false;
+    }
+    return true;
 }
 

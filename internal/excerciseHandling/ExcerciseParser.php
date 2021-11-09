@@ -1,8 +1,8 @@
 <?php
 
-include "../util/configAndConstants.php";
-include "../util/classes.php";
-include "../util/util.php";
+include_once dirname(__DIR__) . "/util/configAndConstants.php";
+include_once dirname(__DIR__) . "/util/classes.php";
+include_once dirname(__DIR__) . "/util/util.php";
 
 
 /**
@@ -26,8 +26,6 @@ function ParseFullExcercise(string $quotedCode){
     $linebreak = line::linebreak();
 
     $quotedCode = str_replace("\r\n", "\n", $quotedCode);
-    $quotedCode = htmlspecialchars($quotedCode);
-    $quotedCode = str_replace(" ", "&nbsp", $quotedCode);
     $quotedCodeArray = explode("\n", $quotedCode); //splits on linebreaks
 
     $arrayOfLines = array_map("parseSingleLine", $quotedCodeArray);

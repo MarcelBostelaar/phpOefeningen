@@ -53,3 +53,19 @@ class line{
         return $this->type == self::Field;
     }
 }
+
+/**
+ * Class exercise
+ * A structure containing a single exercise
+ */
+class exercise{
+    function __construct($_instruction, $_code, array $_answers) {
+        $this->instruction = $_instruction;
+        $this->code = $_code;
+        $this->answers = $_answers;
+    }
+
+    public $instruction;
+    public $code;
+    public $answers;
+}
