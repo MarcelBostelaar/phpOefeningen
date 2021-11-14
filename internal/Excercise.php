@@ -4,6 +4,7 @@ include_once dirname(__DIR__) . "/internal/excerciseHandling/AnswerRetrieval.php
 include_once dirname(__DIR__) . "/internal/excerciseHandling/CodeExecution.php";
 include_once dirname(__DIR__) . "/internal/excerciseHandling/ExcerciseParser.php";
 include_once dirname(__DIR__) . "/internal/LessonRegistration.php";
+include_once dirname(__DIR__) . "/internal/ResultWindows.php";
 
 $lesson = $_GET["lesson"];
 $exerciseNumber = filter_input(INPUT_GET, "exerciseNumber", FILTER_SANITIZE_NUMBER_INT);
@@ -27,6 +28,11 @@ $userAnswers = GetUserSetFields(count($exercise->answers));
 <header>
 </header>
 <main>
+    <div style="visibility: hidden">
+        <input id="exerciseNumber" value="<?= $exerciseNumber ?>">
+        <input id="lesson" value="<?= $lesson ?>">
+    </div>
+
     <?php if ($exerciseNumber > 1) { ?>
         <form action="" method="get" class="inline">
             <input name="exerciseNumber" value="<?=($exerciseNumber - 1)?>" hidden>
@@ -63,21 +69,7 @@ $userAnswers = GetUserSetFields(count($exercise->answers));
         </label>
     </form>
 
-    <h2>Verwachte uitkomst:</h2>
-    <div class='examplediv'>
-        <?php CreateRunnableUserCode($parsedLines, $exercise->answers)(); ?>
-    </div>
-
-    <h2>Jouw uitkomst uitkomst:</h2>
-    <div class='incorrect solutiondiv'>
-        <?php
-        if (WereUserAnswersSend()) {
-            CreateRunnableUserCode($parsedLines, $userAnswers)();
-        } else {
-            echo "Nog geen code uitgevoerd, klik op uitvoeren";
-        }
-        ?>
-    </div>
+    <? ResultWindows($parsedLines, $exercise->answers, $userAnswers); ?>
 
 </main>
 </body>

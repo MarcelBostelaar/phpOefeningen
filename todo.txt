@@ -7,5 +7,6 @@ importeren antwoorden?
 
 Timeout php script van een paar seconden ipv 30 seconden
 
-Groeper echt antwoord en user antwoord in een div
-past check js aan om per groepje te checken
+Pagina om antwoorden op te slaan als html via php en js
+Test uitgevoerde html
+HTML niet uitvoeren maar retrieven via js en opslaan in file

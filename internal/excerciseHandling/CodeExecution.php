@@ -34,30 +34,45 @@ function linesToWorkingCode(array $lines, array $solutions){
 
 /**
  *  * Executes a piece of arbitrary quoted code with arbitrary values (decently) safely.
+ * WARNING: Do not host on a server. Arbitrary code execution. Only meant for local execution by the student.
  *
  * @param array<line> $lines A piece of parsed code
  * @param array<string> $answers The answers to fill into the parsed code
- * @return Closure Anonymous function that, when run, does a new, clean run of the users code.
+ * @return string The captured html output of the users code
  */
-function CreateRunnableUserCode(array $lines, array $answers){
-    return function() use($lines, $answers)
-    {
-        /*
-         * Adds namespace with a unique id around the code, and encapsulates the code in a callable function,
-         * to prevent re-declaration of functions, both globally and by repeated exercise execution. Because function declarations are always global.
-         * namespace evalNamespace12345{function runEvalUserCode(){ <code here> \n}}
-         *
-         * Executed by calling evalNamespace12345\runEvalUserCode();
-         * */
-        $lines = array_merge(
-            [line::code('namespace evalNamespace'), line::field(), line::code('{function runEvalUserCode(){')],
-            $lines,
-            [line::code("\n }}")]);
-        $UID = getNewSessionID();
-        $answers = appendHead($UID, $answers);
-        $finishedCode = linesToWorkingCode($lines, $answers);
+function RunCodeWithAnswers(array $lines, array $answers){
+    /*
+     * Adds namespace with a unique id around the code, and encapsulates the code in a callable function,
+     * to prevent re-declaration of functions, both globally and by repeated exercise execution. Because function declarations are always global.
+     * namespace evalNamespace12345{function runEvalUserCode(){ <code here> \n}}
+     *
+     * Executed by calling evalNamespace12345\runEvalUserCode();
+     * */
+    $lines = array_merge(
+        [line::code('namespace evalNamespace'), line::field(), line::code('{function runEvalUserCode(){')],
+        $lines,
+        [line::code("\n }}")]);
+    $UID = getNewSessionID();
+    $answers = appendHead($UID, $answers);
+    $finishedCode = linesToWorkingCode($lines, $answers);
 
+    ob_start(); //output buffering, captures echo and html output
+    try {
         eval($finishedCode); //run code that generates the functions in working memory
+    }catch (Throwable $t) {
+        echo $t;
+        return retrieveAndEndCleanOutputBuffering();
+    }
+    try {
         eval("evalNamespace$UID\\runEvalUserCode();"); //execute generated function, which executes user code
-    };
+    }catch (Throwable $t){
+        echo $t;
+    }
+    return retrieveAndEndCleanOutputBuffering();
+}
+
+function retrieveAndEndCleanOutputBuffering(){
+    $result = ob_get_contents();
+    ob_end_clean();
+    return $result;
 }

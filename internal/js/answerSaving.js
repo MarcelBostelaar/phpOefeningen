@@ -3,19 +3,22 @@ const fieldclass = "field";
 const resizeIncrement = 10;
 const resizeBuffer = 3;
 const minSize = 20;
+const fieldIdPrefix = "field_";
 
 /**
  * On page loads, loads all the previous answers to the page.
  */
 window.addEventListener("load",loadOldAnswers,false)
+
 function loadOldAnswers(){
     let data = getData();
 
     let fields = document.getElementsByClassName(fieldclass);
-    let page = getPage();
+    let lesson = getLesson();
+    let exerciseNumber = getExerciseNumber();
 
     for (const field of fields) {
-        field.value = getAnswer(data, page, field.name);
+        field.value = getAnswer(data, lesson, exerciseNumber, field.name.replace(fieldIdPrefix, ""));
     }
     fieldResize();
 }
@@ -28,38 +31,45 @@ function fieldInput(){
     let data = getData();
 
     let fields = document.getElementsByClassName(fieldclass);
-    let page = getPage();
+    let lesson = getLesson();
+    let exerciseNumber = getExerciseNumber();
 
     for (const field of fields) {
-        saveAnswer(data, page, field.name, field.value);
+        saveAnswer(data, lesson, field.name, field.value.replace(fieldIdPrefix, ""));
     }
     storeData(data);
 }
 
-function saveAnswer(data, page, field, answer){
+function saveAnswer(data, lesson, exerciseNumber, field, answer){
     if(data == null)
         return
-    if(data[page] == null){
-        data[page] = {};
+    if(data[lesson] == null){
+        data[lesson] = {};
     }
-    data[page][field] = answer;
+    if(data[lesson][exerciseNumber] == null){
+        data[lesson][exerciseNumber] = {};
+    }
+    data[lesson][exerciseNumber][field] = answer;
 }
 
 /**
  * Tries to retrieve the associated answer if it exists, returns "" if it doesn't.
  * @param data The data storage
- * @param page Page adress
+ * @param lesson Lesson id
+ * @param exerciseNumber The number of the exercise
  * @param field Field name
  * @returns {string|*}
  */
-function getAnswer(data, page, field){
+function getAnswer(data, lesson, exerciseNumber, field){
     if(data == null)
         return "";
-    if(data[page] == null)
+    if(data[lesson] == null)
         return "";
-    if(data[page][field] === undefined)
+    if(data[lesson][exerciseNumber] === undefined)
         return "";
-    return data[page][field];
+    if(data[lesson][exerciseNumber][field] === undefined)
+        return "";
+    return data[lesson][exerciseNumber][field];
 }
 
 function storeData(data){
@@ -85,8 +95,12 @@ function saveAnswers(){
     saveStaticDataToTextFile(JSON.stringify(getData(), null, 2), "antwoorden.json");
 }
 
-function getPage(){
-    return window.location.href.split("/").slice(-1)[0];
+function getLesson(){
+    return document.getElementById("lesson").value;
+}
+
+function getExerciseNumber(){
+    return document.getElementById("exerciseNumber").value;
 }
 
 function saveStaticDataToTextFile(text, filename) {
@@ -116,4 +130,10 @@ function fieldResize(){
         if(field.size < minSize)
             field.size = minSize;
     }
+}
+
+function handinSend(lessons){
+    var data = getData().filter(function(x){
+        return lessons.contains(x);
+    });
 }

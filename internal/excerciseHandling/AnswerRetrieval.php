@@ -27,3 +27,12 @@ function WereUserAnswersSend(){
     return true;
 }
 
+/** Returns a decoded json object send in handin answers
+ * @return mixed|null
+ */
+function GetHandinAnswers(){
+    if(isset($_POST["handinAnswers"])){
+        return json_decode($_POST["handinAnswers"]);
+    }
+    return null;
+}
