@@ -31,8 +31,8 @@ function WereUserAnswersSend(){
  * @return mixed|null
  */
 function GetHandinAnswers(){
-    if(isset($_POST["handinAnswers"])){
-        return json_decode($_POST["handinAnswers"]);
+    if(isset($_POST[HandingFormName])){
+        return json_decode($_POST[HandingFormName]);
     }
     return null;
 }

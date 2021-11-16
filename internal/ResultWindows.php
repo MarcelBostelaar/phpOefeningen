@@ -1,6 +1,14 @@
 <?php
 include_once dirname(__DIR__) . "/internal/excerciseHandling/CodeExecution.php";
 
+function allEmptyStrings($items){
+    foreach ($items as $item){
+        if($item != "")
+            return false;
+    }
+    return true;
+}
+
 /**
  * Echos an expected and real outcome window set.
  * @param array<line> $parsedLines
@@ -19,7 +27,7 @@ function ResultWindows($parsedLines, $realAnswers, $userAnswers){
 
     <h2>Jouw uitkomst uitkomst:</h2>
         <?php
-        if (WereUserAnswersSend()) {
+        if (!allEmptyStrings($userAnswers)) {
             $userResult = RunCodeWithAnswers($parsedLines, $userAnswers);
             if($userResult == $correctResult)
                 echo "<div class='correct solutiondiv'>";

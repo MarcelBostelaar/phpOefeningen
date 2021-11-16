@@ -39,8 +39,12 @@ function LinesToCodeHTML(array $lines, array $solutions, array $userAnswers){
                 $totaalHTML .= "<p>$code</p>";
                 break;
             case line::Field:
-                $totaalHTML .= "<input type='text' oninput='fieldInput()' name='field_$fieldCounter' class='fieldAnswer' value='$userAnswers[$fieldCounter]'/>
-                    <input type='text' class='fieldSolution' value='$solutions[$fieldCounter]' readonly/>";
+                $fieldsizeUser = strlen($userAnswers[$fieldCounter]) / 10 * 10 + 10;
+                $fieldsizeAnswer = strlen($solutions[$fieldCounter]) / 10 * 10 + 10;
+                $fieldsizeUser = $fieldsizeUser < 20 ? 20 : $fieldsizeUser;
+                $fieldsizeAnswer = $fieldsizeAnswer < 20 ? 20 : $fieldsizeAnswer;
+                $totaalHTML .= "<input type='text' oninput='fieldInput()' name='field_$fieldCounter' class='fieldAnswer' value='$userAnswers[$fieldCounter]' size='$fieldsizeUser'/>
+                    <input type='text' class='fieldSolution' value='$solutions[$fieldCounter]' readonly size='$fieldsizeAnswer'/>";
                 $fieldCounter++;
                 break;
         }

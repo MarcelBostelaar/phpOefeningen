@@ -1,5 +1,6 @@
 const key = "phpOefenenData";
-const fieldclass = "field";
+const fieldclass = "fieldAnswer";
+const solutionfieldclass = "fieldSolution";
 const resizeIncrement = 10;
 const resizeBuffer = 3;
 const minSize = 20;
@@ -35,7 +36,7 @@ function fieldInput(){
     let exerciseNumber = getExerciseNumber();
 
     for (const field of fields) {
-        saveAnswer(data, lesson, field.name, field.value.replace(fieldIdPrefix, ""));
+        saveAnswer(data, lesson, exerciseNumber, field.name.replace(fieldIdPrefix, ""), field.value);
     }
     storeData(data);
 }
@@ -103,23 +104,10 @@ function getExerciseNumber(){
     return document.getElementById("exerciseNumber").value;
 }
 
-function saveStaticDataToTextFile(text, filename) {
-    downloadToFile(text, filename, "text/plain;charset=utf-8");
-}
-
-function downloadToFile (content, filename, contentType) {
-    const a = document.createElement('a');
-    const file = new Blob([content], {type: contentType});
-
-    a.href= URL.createObjectURL(file);
-    a.download = filename;
-    a.click();
-
-    URL.revokeObjectURL(a.href);
-}
-
 function fieldResize(){
-    let fields = document.getElementsByClassName(fieldclass);
+    let fields = Array.from(document.getElementsByClassName(fieldclass));
+    let exampleFields = Array.from(document.getElementsByClassName(solutionfieldclass));
+    fields = fields.concat(exampleFields);
     for (const field of fields) {
         while(field.size < field.value.length + resizeBuffer){
             field.size += resizeIncrement;
@@ -130,10 +118,4 @@ function fieldResize(){
         if(field.size < minSize)
             field.size = minSize;
     }
-}
-
-function handinSend(lessons){
-    var data = getData().filter(function(x){
-        return lessons.contains(x);
-    });
 }
