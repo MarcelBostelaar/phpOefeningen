@@ -6,9 +6,6 @@
     display: inline;
 }
 
-.code, input[type="text"]{
-    font-family: Consolas, monospace;
-}
 
 .fieldSolution {
     background-color: lightpink
@@ -44,4 +41,10 @@ main{
     border-width: 4px;
     border-style: solid;
     padding: 1em;
+}
+
+.codeTable p, .codeTable input[type="text"]{
+    display: inline-block;
+    margin: 0;
+    font-family: Consolas, monospace;
 }

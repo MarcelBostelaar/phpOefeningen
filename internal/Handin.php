@@ -13,15 +13,15 @@ include_once dirname(__DIR__) . "/internal/LessonRegistration.php";
     <header>
     </header>
     <main>
-        <form>
-            <?php foreach(array_keys(LessonRegister::$AllLessons) as $x){ ?>
-                <label>
-                    <input type="checkbox" name="<?php echo $x;?>" class="handinCheckbox">
-                    <?php echo $x;?>
-                </label>
-                <br>
-            <?php } ?>
-            <button onclick="downloadHandin()">Download</button>
-        </form>
+        <a href="../index.php"><button>Terug naar hoofdmenu</button></a>
+        <br><br>
+        <?php foreach(array_keys(LessonRegister::$AllLessons) as $x){ ?>
+            <label>
+                <input type="checkbox" name="<?php echo $x;?>" class="handinCheckbox">
+                <?php echo $x;?>
+            </label>
+            <br>
+        <?php } ?>
+        <button onclick="downloadHandin()">Download</button>
     </main>
 </body>

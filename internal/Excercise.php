@@ -21,7 +21,7 @@ $userAnswers = GetUserSetFields(count($exercise->answers));
     <title>Opdracht</title>
     <!--  Solution or user answers are hidden/shown via js with this -->
     <style id='exampleCodeCSS'>.fieldSolution {
-            display: none
+            display: none !important;
         }</style>
 </head>
 <body>
@@ -69,7 +69,7 @@ $userAnswers = GetUserSetFields(count($exercise->answers));
         </label>
     </form>
 
-    <? ResultWindows($parsedLines, $exercise->answers, $userAnswers); ?>
+    <?php ResultWindows($parsedLines, $exercise->answers, $userAnswers); ?>
 
 </main>
 </body>

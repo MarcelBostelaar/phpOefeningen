@@ -28,7 +28,6 @@ function getHandinString(lessons, handleData){
     formData.append(handinFormName, JSON.stringify(data));
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "HandinGenerator.php", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function() {
         handleData(this.responseText);
     }
