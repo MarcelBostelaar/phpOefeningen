@@ -7,7 +7,7 @@ include_once dirname(__DIR__) . "/Lessons/ifelse.php";
 class LessonRegister{
     public static $AllLessons = [];
 
-    static function register(string $lessonName, array $exercises){
+    static function register($lessonName, array $exercises){
         if(!isset(LessonRegister::$AllLessons[$lessonName])) {
             LessonRegister::$AllLessons[$lessonName] = $exercises;
         }

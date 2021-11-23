@@ -40,4 +40,18 @@ function ResultWindows($parsedLines, $realAnswers, $userAnswers){
         }
         ?>
     </div>
-<?php } ?>
+<?php }
+
+/**
+ * Runs the code of the user and example and returns if the results are equal.
+ * @param array<line> $parsedLines
+ * @param array<string> $realAnswers
+ * @param array<string> $userAnswers
+ * @return bool
+ */
+function ResultIsCorrect($parsedLines, $realAnswers, $userAnswers)
+{
+    $correctResult = RunCodeWithAnswers($parsedLines, $realAnswers);
+    $userResult = RunCodeWithAnswers($parsedLines, $userAnswers);
+    return $correctResult == $userResult;
+}

@@ -48,3 +48,9 @@ main{
     margin: 0;
     font-family: Consolas, monospace;
 }
+
+.answerTable td{
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
