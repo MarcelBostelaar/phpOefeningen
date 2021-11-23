@@ -1,21 +1,14 @@
 <?php
 include_once dirname(__DIR__) . "/internal/excerciseHandling/CodeExecution.php";
 
-function allEmptyStrings($items){
-    foreach ($items as $item){
-        if($item != "")
-            return false;
-    }
-    return true;
-}
-
 /**
  * Echos an expected and real outcome window set.
  * @param array<line> $parsedLines
  * @param array<string> $realAnswers
  * @param array<string> $userAnswers
+ * @param bool $executeUserCode
  */
-function ResultWindows($parsedLines, $realAnswers, $userAnswers){
+function ResultWindows($parsedLines, $realAnswers, $userAnswers, $executeUserCode){
     ?>
     <h2>Verwachte uitkomst:</h2>
     <div class='examplediv'>
@@ -27,7 +20,7 @@ function ResultWindows($parsedLines, $realAnswers, $userAnswers){
 
     <h2>Jouw uitkomst uitkomst:</h2>
         <?php
-        if (!allEmptyStrings($userAnswers)) {
+        if ($executeUserCode) {
             $userResult = RunCodeWithAnswers($parsedLines, $userAnswers);
             if($userResult == $correctResult)
                 echo "<div class='correct solutiondiv'>";

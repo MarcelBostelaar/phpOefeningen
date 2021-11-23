@@ -8,7 +8,7 @@ include_once dirname(__DIR__) . "/internal/ResultWindows.php";
 
 $lesson = $_GET["lesson"];
 $exerciseNumber = filter_input(INPUT_GET, "exerciseNumber", FILTER_SANITIZE_NUMBER_INT);
-$exercise = LessonRegister::$AllLessons[$lesson][$exerciseNumber];
+$exercise = LessonRegister::$AllLessons[$lesson][$exerciseNumber - 1];
 $totalExercises = count(LessonRegister::$AllLessons[$lesson]);
 $parsedLines = ParseFullExcercise($exercise->code);
 $userAnswers = GetUserSetFields(count($exercise->answers));
@@ -69,7 +69,7 @@ $userAnswers = GetUserSetFields(count($exercise->answers));
         </label>
     </form>
 
-    <?php ResultWindows($parsedLines, $exercise->answers, $userAnswers); ?>
+    <?php ResultWindows($parsedLines, $exercise->answers, $userAnswers, isset($_POST["submit"])); ?>
 
 </main>
 </body>
