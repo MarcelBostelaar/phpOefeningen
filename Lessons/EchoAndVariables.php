@@ -78,5 +78,5 @@ echo "Hallo $naam";', []
     )
     ];
 
-LessonRegister::register("echo", $echoLessons);
+LessonRegister::register("echo en variabelen", $echoLessons);
 ?>

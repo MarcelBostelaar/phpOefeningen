@@ -5,7 +5,7 @@ $functieInstructie = "In php, en bijna elke andere programmeertaal kan je functi
     Een functie heeft 0 of meer zogenaamde 'parameters', dit zijn waardes die je meegeeft en dus beschikbaar maakt aan de functie.
     Ook kan een functie een waarde teruggeven, de zogenaamde return value. Dit hoeft niet, maar mag wel.";
 
-LessonRegister::register("functions",
+LessonRegister::register("functies",
     [
     new exercise($functieInstructie,
         '

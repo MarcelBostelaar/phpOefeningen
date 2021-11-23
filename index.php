@@ -14,6 +14,7 @@
         <li><a href="internal/Excercise.php?lesson=echo&exerciseNumber=1">Echo en variabelen</a></li>
         <li><a href="internal/Excercise.php?lesson=ifelse&exerciseNumber=1">If else</a></li>
         <li><a href="internal/Excercise.php?lesson=function&exerciseNumber=1">Functies</a></li>
+        <li><a href="internal/Excercise.php?lesson=Loops&exerciseNumber=1">Loops</a></li>
     </ol>
 </main>
 </body>

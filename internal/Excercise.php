@@ -6,6 +6,8 @@ include_once dirname(__DIR__) . "/internal/excerciseHandling/ExcerciseParser.php
 include_once dirname(__DIR__) . "/internal/LessonRegistration.php";
 include_once dirname(__DIR__) . "/internal/ResultWindows.php";
 
+set_time_limit(8);
+
 $lesson = $_GET["lesson"];
 $exerciseNumber = filter_input(INPUT_GET, "exerciseNumber", FILTER_SANITIZE_NUMBER_INT);
 $exercise = LessonRegister::$AllLessons[$lesson][$exerciseNumber - 1];

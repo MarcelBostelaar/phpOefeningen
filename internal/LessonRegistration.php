@@ -3,6 +3,7 @@ include_once dirname(__DIR__) .  "/internal/util/classes.php";
 include_once dirname(__DIR__) . "/Lessons/EchoAndVariables.php";
 include_once dirname(__DIR__) . "/Lessons/functies.php";
 include_once dirname(__DIR__) . "/Lessons/ifelse.php";
+include_once dirname(__DIR__) . "/Lessons/loops.php";
 
 class LessonRegister{
     public static $AllLessons = [];

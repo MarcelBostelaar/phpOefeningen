@@ -41,6 +41,7 @@ main{
     border-width: 4px;
     border-style: solid;
     padding: 1em;
+    font-family: Consolas, monospace;
 }
 
 .codeTable p, .codeTable input[type="text"]{
