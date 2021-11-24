@@ -10,7 +10,7 @@ function singleExerciseAnswer($id, $exercise, $userAnswers){
     $parsedLines = ParseFullExcercise($exercise->code);
     echo "<div id='$id'>";
     echo LinesToCodeHTML($parsedLines, $exercise->answers, $userAnswers);
-    ResultWindows($parsedLines, $exercise->answers, $userAnswers);
+    ResultWindows($parsedLines, $exercise->answers, $userAnswers, true);
     echo "</div>";
 }
 
@@ -38,7 +38,7 @@ function singleExerciseAnswer($id, $exercise, $userAnswers){
 
             echo "<table class='answerTable'>";
             foreach ($lesson as $exerciseNumber => $userAnswers){
-                $exercise = LessonRegister::$AllLessons[$lessonName][$exerciseNumber];
+                $exercise = LessonRegister::$AllLessons[$lessonName][$exerciseNumber - 1];
                 $isCorrect = ResultIsCorrect(ParseFullExcercise($exercise->code), $exercise->answers, (array) $userAnswers);
                 $class = "null";
                 if($isCorrect)
@@ -59,7 +59,7 @@ function singleExerciseAnswer($id, $exercise, $userAnswers){
 
             foreach ($lesson as $exerciseNumber => $userAnswers){
                 echo "<h2>Opdracht $exerciseNumber</h2>";
-                $exercise = LessonRegister::$AllLessons[$lessonName][$exerciseNumber];
+                $exercise = LessonRegister::$AllLessons[$lessonName][$exerciseNumber - 1];
                 singleExerciseAnswer($lessonName . $exerciseNumber, $exercise, (array) $userAnswers);
             }
         }
